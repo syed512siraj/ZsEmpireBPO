@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZS EMPIRES BPO | Premium Lead Generation</title>
+<script>
+(function(){
+  var isLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root[data-theme="dark"] {
+  --bg:#06101f;--bg2:#0a1830;--bg3:#0e2040;--card:#0f2342;
+  --border:rgba(80,160,255,0.18);--accent:#4FB3FF;--accent2:#8ad4ff;
+  --navy:#1B3A6A;--text:#eaf3ff;--text2:#9db4d6;--text3:#5b7aa6;
+  --glow:rgba(79,179,255,0.3);
+  --hero-grad:linear-gradient(135deg,#06101f 0%,#0c1f3d 45%,#123057 100%);
+  --gold-grad:linear-gradient(135deg,#3a8dff,#6fc5ff,#bdeaff);
+}
+:root[data-theme="light"] {
+  --bg:#f4f9ff;--bg2:#e9f2fe;--bg3:#dbeaff;--card:#ffffff;
+  --border:rgba(40,120,220,0.18);--accent:#1f6fd6;--accent2:#3a8dff;
+  --navy:#0c1f3d;--text:#0c1f3d;--text2:#3f5d8a;--text3:#7e9bc7;
+  --glow:rgba(40,120,220,0.18);
+  --hero-grad:linear-gradient(135deg,#eaf2ff 0%,#dbeafe 50%,#eaf2ff 100%);
+  --gold-grad:linear-gradient(135deg,#1f6fd6,#3a8dff,#7fc4ff);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background .4s,color .4s;overflow-x:hidden;}
+
+/* SCROLL PROGRESS BAR */
+.scroll-progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:1100;background:transparent;pointer-events:none;}
+.scroll-progress-bar{height:100%;width:0%;background:var(--gold-grad);background-size:200% auto;animation:shineText 3s linear infinite;box-shadow:0 0 10px var(--glow);transition:width .08s linear;}
+
+/* LOADING SCREEN */
+.loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .6s ease,visibility .6s ease;}
+.loader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.loader-text{display:flex;gap:.15em;font-family:'Outfit',sans-serif;font-weight:900;letter-spacing:.12em;font-size:clamp(2rem,7vw,4rem);background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shineText 3s linear infinite;}
+[data-theme="dark"] .loader-text{filter:drop-shadow(0 0 16px var(--glow));}
+.loader-text span{display:inline-block;opacity:0;animation:letterEnter .6s ease-out forwards, letterBounce 1.6s ease-in-out infinite;animation-delay:var(--d,0s),calc(var(--d,0s) + .6s);}
+@keyframes letterEnter{
+  0%{opacity:0;transform:translateY(28px) scale(.6) rotate(-8deg);}
+  60%{opacity:1;transform:translateY(-10px) scale(1.12) rotate(4deg);}
+  100%{opacity:1;transform:translateY(0) scale(1) rotate(0deg);}
+}
+@keyframes letterBounce{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-6px) scale(1.05);}
+}
+.loader-sub{margin-top:1.4rem;font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--text2);opacity:0;animation:loaderSubFade 2.2s ease-in-out .9s infinite;}
+@keyframes loaderSubFade{0%,100%{opacity:.3;}50%{opacity:.9;}}
+.loader-bar{margin-top:1.8rem;width:160px;height:3px;border-radius:3px;background:rgba(79,179,255,0.15);overflow:hidden;}
+.loader-bar::after{content:'';display:block;width:40%;height:100%;background:var(--gold-grad);border-radius:3px;animation:loaderBarMove 1.3s ease-in-out infinite;}
+@keyframes loaderBarMove{0%{transform:translateX(-100%);}100%{transform:translateX(350%);}}
+@media(prefers-reduced-motion: reduce){
+  .loader{display:none;}
+}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(6,16,31,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(79,179,255,0.2);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;transition:background .4s;}
+[data-theme="light"] nav{background:rgba(244,249,255,0.95);border-bottom:1px solid rgba(79,179,255,0.3);}
+.logo{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:2.5px;background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shineText 5s linear infinite,logoGlow 2.6s ease-in-out infinite;will-change:background-position,opacity;}
+@keyframes logoGlow{0%,100%{opacity:.85;}50%{opacity:1;}}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .3s;letter-spacing:.3px;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:25px;height:2px;background:var(--accent);border-radius:2px;transition:.3s;}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--hero-grad);display:flex;align-items:center;justify-content:center;text-align:center;padding:130px 5% 90px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(79,179,255,0.12) 0%,transparent 65%);}
+.hero::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold-grad);}
+.hero-bg{position:absolute;inset:0;z-index:0;opacity:.5;background-image:
+  linear-gradient(rgba(79,179,255,0.07) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(79,179,255,0.07) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse at 50% 35%,rgba(0,0,0,0.9) 0%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 35%,rgba(0,0,0,0.9) 0%,transparent 75%);
+}
+[data-theme="light"] .hero-bg{opacity:.35;}
+.hero-lines{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;opacity:.35;}
+.hero-lines line{stroke:var(--accent);stroke-width:1;stroke-dasharray:6 8;animation:linesFlow 30s linear infinite;}
+[data-theme="light"] .hero-lines{opacity:.2;}
+@keyframes linesFlow{0%{stroke-dashoffset:0;}100%{stroke-dashoffset:280;}}
+.hero-node{position:absolute;border-radius:50%;background:var(--accent);box-shadow:0 0 18px 4px var(--glow);animation:nodeGlow 3s ease-in-out infinite;}
+@keyframes nodeGlow{0%,100%{opacity:.35;transform:scale(1);}50%{opacity:1;transform:scale(1.6);}}
+.hero-beam{position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(180deg,transparent,var(--glow) 30%,var(--glow) 70%,transparent);opacity:.4;filter:blur(1px);animation:beamPulse 5s ease-in-out infinite;}
+@keyframes beamPulse{0%,100%{opacity:.15;}50%{opacity:.5;}}
+.hero-sweep{position:absolute;top:-50%;left:-60%;width:60%;height:220%;background:linear-gradient(75deg,transparent 0%,rgba(79,179,255,0.10) 45%,rgba(180,225,255,0.18) 50%,rgba(79,179,255,0.10) 55%,transparent 100%);transform:rotate(8deg) translateX(0);animation:sweepMove 9s linear infinite;pointer-events:none;will-change:transform;}
+@keyframes sweepMove{0%{transform:rotate(8deg) translateX(0);}100%{transform:rotate(8deg) translateX(300%);}}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;will-change:transform;}
+.orb1{width:550px;height:550px;background:rgba(79,179,255,0.09);top:-160px;right:-160px;animation:orbDrift 12s ease-in-out infinite;}
+.orb2{width:380px;height:380px;background:rgba(27,42,74,0.45);bottom:0;left:-110px;animation:orbDrift 14s ease-in-out infinite reverse;}
+.orb3{width:460px;height:460px;background:rgba(120,200,255,0.07);bottom:-130px;right:5%;animation:orbDrift 16s ease-in-out infinite;}
+.orb4{width:300px;height:300px;background:rgba(180,225,255,0.06);top:35%;left:8%;animation:orbDrift 11s ease-in-out infinite reverse;}
+@keyframes orbDrift{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,20px) scale(1.1);}}
+.hero-content{position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(79,179,255,0.08);border:1px solid rgba(79,179,255,0.35);padding:.5rem 1.4rem;border-radius:50px;font-size:.8rem;color:var(--accent);font-weight:600;margin-bottom:1.8rem;letter-spacing:.8px;text-transform:uppercase;opacity:0;font-family:'Space Grotesk',sans-serif;box-shadow:0 0 18px var(--glow);animation:tagGlow 3s ease-in-out infinite;}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,6vw,5rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem;position:relative;z-index:1;}
+.hero h1 .gold-text{background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shineText 4s linear infinite;position:relative;display:inline-block;}
+.hero h1 .white-text{color:#fff;-webkit-text-fill-color:#fff;}
+[data-theme="light"] .hero h1 .white-text{color:var(--navy);-webkit-text-fill-color:var(--navy);}
+.hero p{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;color:var(--text2);max-width:580px;margin:0 auto 2.5rem;line-height:1.8;opacity:0;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0;}
+@keyframes btnHeartbeat{
+  0%,100%{box-shadow:0 6px 25px var(--glow),0 0 0 0 rgba(79,179,255,0.45);}
+  50%{box-shadow:0 10px 40px var(--glow),0 0 0 14px rgba(79,179,255,0);}
+}
+.btn-gold{background:var(--gold-grad);color:#0c1f3d;padding:.95rem 2.3rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:.95rem;transition:all .3s;box-shadow:0 6px 25px var(--glow);border:none;cursor:pointer;letter-spacing:.3px;animation:btnHeartbeat 2.2s ease-in-out infinite;}
+.btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 18px 50px var(--glow),0 0 30px 6px rgba(79,179,255,0.5);animation-play-state:paused;}
+.btn-outline{background:transparent;color:var(--accent);padding:.95rem 2.3rem;border-radius:10px;border:1.5px solid rgba(79,179,255,0.4);font-weight:600;font-size:.95rem;text-decoration:none;transition:all .3s;cursor:pointer;animation:btnHeartbeat 2.6s ease-in-out infinite;animation-delay:.4s;}
+.btn-outline:hover{border-color:var(--accent);background:rgba(79,179,255,0.1);transform:translateY(-3px) scale(1.03);box-shadow:0 0 30px 6px rgba(79,179,255,0.35);animation-play-state:paused;}
+.hero-stats{display:flex;gap:3.5rem;justify-content:center;margin-top:4.5rem;flex-wrap:wrap;padding-top:3rem;border-top:1px solid rgba(79,179,255,0.12);opacity:0;}
+.hero-stat .num{font-family:'Syne',sans-serif;font-size:2.3rem;font-weight:800;background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;}
+.hero-stat .lbl{font-size:.78rem;color:var(--text3);font-weight:500;margin-top:.2rem;letter-spacing:.5px;text-transform:uppercase;}
+
+/* SECTIONS */
+section{padding:95px 5%;overflow:hidden;}
+.section-tag{display:inline-block;background:rgba(79,179,255,0.08);border:1px solid rgba(79,179,255,0.28);color:var(--accent);padding:.35rem 1.2rem;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1rem;font-family:'Space Grotesk',sans-serif;box-shadow:0 0 16px var(--glow);animation:tagGlow 3s ease-in-out infinite;}
+@keyframes tagGlow{0%,100%{box-shadow:0 0 10px var(--glow);}50%{box-shadow:0 0 22px var(--glow);}}
+
+/* ANIMATED HEADING WRAP */
+.heading-wrap{position:relative;display:inline-block;}
+.heading-glow{position:absolute;top:-30%;left:-15%;width:60%;height:160%;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);filter:blur(35px);z-index:0;animation:headingFloat 7s ease-in-out infinite;pointer-events:none;}
+.heading-glow2{position:absolute;bottom:-40%;right:-15%;width:50%;height:150%;background:radial-gradient(circle,rgba(140,210,255,0.18) 0%,transparent 70%);filter:blur(40px);z-index:0;animation:headingFloat 9s ease-in-out infinite reverse;pointer-events:none;}
+@keyframes headingFloat{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(15px,-12px) scale(1.15);}}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:1rem;line-height:1.2;position:relative;z-index:1;}
+.section-title .gold-text{background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shineText 4s linear infinite;position:relative;}
+@keyframes underlineSweep{
+  0%{transform:scaleX(0);transform-origin:left;opacity:.9;}
+  45%{transform:scaleX(1);transform-origin:left;opacity:1;}
+  55%{transform:scaleX(1);transform-origin:right;opacity:1;}
+  100%{transform:scaleX(0);transform-origin:right;opacity:.9;}
+}
+.gold-text.underline-anim::after,.white-text.underline-anim::after{
+  content:'';position:absolute;left:0;right:0;bottom:-6px;height:4px;border-radius:4px;
+  background:var(--gold-grad);background-size:200% auto;
+  animation:underlineSweep 3.2s ease-in-out infinite, shineText 4s linear infinite;
+  box-shadow:0 2px 10px var(--glow);
+}
+@keyframes shineText{0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
+
+/* SCRATCH / MARKER HIGHLIGHT (like "real results" effect) */
+.brand-mark{margin-bottom:1.6rem;opacity:0;position:relative;display:inline-block;}
+.brand-halo{position:absolute;top:50%;left:50%;width:160%;height:320%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,var(--glow) 0%,transparent 65%);filter:blur(45px);opacity:.6;z-index:-2;animation:haloPulse 3.4s ease-in-out infinite;pointer-events:none;}
+@keyframes haloPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(.95);}50%{opacity:.85;transform:translate(-50%,-50%) scale(1.1);}}
+.scratch-wrap{position:relative;display:inline-block;font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,6vw,4.2rem);font-weight:900;letter-spacing:8px;color:var(--text);padding:.6rem 1.8rem;background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shineText 4s linear infinite,brandFade 4.5s ease-in-out infinite;}
+@keyframes brandFade{0%,100%{opacity:1;}50%{opacity:.6;}}
+[data-theme="dark"] .scratch-wrap{filter:drop-shadow(0 0 18px var(--glow));}
+.scratch-wrap svg{position:absolute;left:-8%;top:-22%;width:116%;height:148%;overflow:visible;pointer-events:none;z-index:-1;}
+.scratch-wrap svg path{
+  fill:none;stroke:var(--accent);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1000;stroke-dashoffset:1000;
+  filter:drop-shadow(0 0 8px var(--glow));
+  animation:scratchDraw 3s ease-out infinite;
+}
+/* ROUND ORBIT RING around brand mark */
+.brand-ring{position:absolute;top:50%;left:50%;width:128%;height:280%;border:1.5px dashed rgba(79,179,255,0.35);border-radius:50%;transform:translate(-50%,-50%);animation:ringSpin 13s linear infinite;pointer-events:none;}
+.brand-ring::before{content:'';position:absolute;top:-5px;left:50%;width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px 5px var(--glow);transform:translateX(-50%);}
+.brand-ring2{position:absolute;top:50%;left:50%;width:148%;height:320%;border:1px dotted rgba(120,200,255,0.22);border-radius:50%;transform:translate(-50%,-50%);animation:ringSpin 21s linear infinite reverse;pointer-events:none;}
+.brand-ring3{position:absolute;top:50%;left:50%;width:112%;height:250%;border:1px solid rgba(79,179,255,0.18);border-radius:50%;transform:translate(-50%,-50%);animation:ringSpin 9s linear infinite;pointer-events:none;}
+.brand-ring3::before{content:'';position:absolute;bottom:-4px;left:30%;width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 12px 4px var(--glow);}
+@keyframes ringSpin{0%{transform:translate(-50%,-50%) rotate(0deg);}100%{transform:translate(-50%,-50%) rotate(360deg);}}
+@keyframes scratchDraw{
+  0%{stroke-dashoffset:1000;opacity:0;}
+  8%{opacity:1;}
+  55%{stroke-dashoffset:0;opacity:1;}
+  85%{stroke-dashoffset:0;opacity:1;}
+  100%{stroke-dashoffset:0;opacity:0;}
+}
+.section-sub{color:var(--text2);font-size:.98rem;max-width:550px;line-height:1.8;}
+.centered{text-align:center;}
+.centered .section-sub{margin:0 auto;}
+
+/* CORNER LOADING ANIMATION (used on cards) */
+@keyframes cornerSpin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+@keyframes iconPulse{0%,100%{box-shadow:0 0 0 0 var(--glow);}50%{box-shadow:0 0 0 10px rgba(79,179,255,0);}}
+.corner-anim{position:absolute;inset:-2px;border-radius:inherit;pointer-events:none;z-index:0;}
+.corner-anim::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent 0%,var(--accent) 8%,transparent 18%,transparent 100%);animation:cornerSpin var(--spin-dur,4s) linear infinite;opacity:.35;will-change:transform;backface-visibility:hidden;}
+.corner-anim::after{content:'';position:absolute;inset:2px;border-radius:inherit;background:var(--card);}
+.icon-pulse{animation:iconPulse 2.4s ease-out infinite;}
+
+/* ABOUT */
+#about{background:var(--bg2);position:relative;overflow:hidden;}
+#about::before{content:'';position:absolute;top:-10%;right:-10%;width:45%;height:60%;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);filter:blur(50px);opacity:.5;pointer-events:none;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.about-visual{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;}
+.about-visual::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold-grad);}
+.about-item{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--border);}
+.about-item:last-child{border-bottom:none;}
+.about-icon{width:44px;height:44px;background:rgba(79,179,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1rem;flex-shrink:0;border:1px solid rgba(79,179,255,0.2);animation:iconPulse 2.6s ease-out infinite;}
+.about-item h4{font-weight:700;font-size:.95rem;margin-bottom:.25rem;}
+.about-item p{color:var(--text2);font-size:.85rem;line-height:1.6;}
+
+/* SERVICES */
+#services{background:var(--bg);position:relative;overflow:hidden;}
+#services::before{content:'';position:absolute;bottom:-15%;left:-8%;width:50%;height:55%;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);filter:blur(55px);opacity:.45;pointer-events:none;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3.5rem;max-width:1100px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
+.service-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.2rem;transition:all .35s;position:relative;overflow:hidden;}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold-grad);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:2;}
+.service-card:hover{transform:translateY(-7px);border-color:rgba(79,179,255,0.35);box-shadow:0 20px 50px rgba(0,0,0,0.3);}
+.service-card:hover::before{transform:scaleX(1);}
+.service-card>*{position:relative;z-index:1;}
+.svc-icon{width:58px;height:58px;border-radius:14px;background:var(--gold-grad);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#0c1f3d;margin-bottom:1.3rem;box-shadow:0 8px 22px var(--glow);animation:iconPulse 2.4s ease-out infinite;}
+.service-card h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.7rem;}
+.service-card p{color:var(--text2);font-size:.87rem;line-height:1.75;}
+
+/* WHY US */
+#why{background:var(--bg2);position:relative;overflow:hidden;}
+#why::before{content:'';position:absolute;top:-12%;right:-10%;width:48%;height:60%;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);filter:blur(55px);opacity:.45;pointer-events:none;}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;margin-top:3.5rem;max-width:1100px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
+.why-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:all .3s;position:relative;overflow:hidden;}
+.why-card>*{position:relative;z-index:1;}
+.why-card:hover{transform:translateY(-5px);border-color:rgba(79,179,255,0.35);box-shadow:0 16px 40px rgba(0,0,0,0.2);}
+.why-num{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;background:var(--gold-grad);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:.8rem;opacity:.5;animation:shineText 4s linear infinite;}
+.why-card h4{font-weight:700;margin-bottom:.5rem;font-size:1rem;}
+.why-card p{color:var(--text2);font-size:.85rem;line-height:1.65;}
+
+/* STATS */
+#stats{background:linear-gradient(135deg,#0c1f3d 0%,#0c1f3d 50%,#0c1f3d 100%);text-align:center;position:relative;overflow:hidden;}
+#stats::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(79,179,255,0.07) 0%,transparent 60%);}
+[data-theme="light"] #stats{background:linear-gradient(135deg,#0c1f3d 0%,#1B3A6A 50%,#0c1f3d 100%);}
+#stats .section-title{color:#fff;}
+#stats .section-sub{color:rgba(255,255,255,0.55);}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3.5rem;max-width:900px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
+.stat-box{padding:2.2rem 1rem;border:1px solid rgba(79,179,255,0.15);border-radius:16px;background:rgba(79,179,255,0.04);transition:border-color .3s,background .3s;}
+.stat-box:hover{border-color:rgba(79,179,255,0.35);background:rgba(79,179,255,0.08);}
+.stat-box .count{font-family:'Syne',sans-serif;font-size:3.2rem;font-weight:800;background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;display:block;}
+.stat-box p{color:rgba(255,255,255,0.6);font-size:.85rem;margin-top:.6rem;font-weight:500;letter-spacing:.3px;}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--bg);position:relative;overflow:hidden;}
+#testimonials::before{content:'';position:absolute;bottom:-15%;right:-8%;width:50%;height:55%;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);filter:blur(55px);opacity:.4;pointer-events:none;}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.5rem;margin-top:3.5rem;max-width:1100px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
+.testi-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2.2rem;transition:all .3s;position:relative;overflow:hidden;}
+.testi-card::before{content:'\201C';position:absolute;top:-10px;right:20px;font-size:8rem;color:rgba(79,179,255,0.06);font-family:Georgia,serif;line-height:1;}
+.testi-card:hover{transform:translateY(-5px);border-color:rgba(79,179,255,0.3);box-shadow:0 18px 45px rgba(0,0,0,0.2);}
+.stars{color:var(--accent);font-size:.95rem;margin-bottom:1rem;letter-spacing:3px;}
+.testi-card p.review{color:var(--text2);font-size:.9rem;line-height:1.8;margin-bottom:1.5rem;position:relative;z-index:1;}
+.testi-author{display:flex;align-items:center;gap:.9rem;}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--gold-grad);display:flex;align-items:center;justify-content:center;color:#0c1f3d;font-weight:800;font-size:.95rem;flex-shrink:0;}
+.testi-author h5{font-size:.92rem;font-weight:700;margin-bottom:.1rem;}
+.testi-author .role{font-size:.78rem;color:var(--accent);font-weight:600;}
+.testi-author .loc{font-size:.75rem;color:var(--text3);margin-top:.1rem;}
+
+/* CONTACT */
+#contact{background:var(--bg2);position:relative;overflow:hidden;}
+#contact::before{content:'';position:absolute;top:-10%;left:-8%;width:46%;height:55%;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);filter:blur(55px);opacity:.45;pointer-events:none;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;max-width:1050px;margin:3.5rem auto 0;align-items:start;position:relative;z-index:1;}
+.contact-info h3{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:1rem;}
+.contact-info p{color:var(--text2);line-height:1.8;margin-bottom:1.8rem;font-size:.9rem;}
+.contact-detail{display:flex;align-items:center;gap:1rem;padding:.9rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:.8rem;transition:all .3s;position:relative;overflow:hidden;}
+.contact-detail:hover{border-color:rgba(79,179,255,0.35);transform:translateX(6px);}
+.contact-detail .cd-icon{width:38px;height:38px;border-radius:50%;background:var(--gold-grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#0c1f3d;font-size:.95rem;animation:iconPulse 2.4s ease-out infinite;}
+.contact-detail .cd-icon i{color:#0c1f3d;width:auto;}
+.contact-detail span{color:var(--text2);font-size:.87rem;}
+.form-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.2rem;position:relative;overflow:hidden;}
+.form-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold-grad);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-size:.8rem;font-weight:700;color:var(--text2);margin-bottom:.45rem;letter-spacing:.3px;text-transform:uppercase;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.78rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.9rem;transition:border .3s;outline:none;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,179,255,0.1);}
+.form-group textarea{height:110px;resize:vertical;}
+.form-group select option{background:var(--bg);}
+.submit-btn{width:100%;background:var(--gold-grad);color:#0c1f3d;border:none;padding:.95rem;border-radius:10px;font-size:.98rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;box-shadow:0 6px 22px var(--glow);letter-spacing:.3px;animation:btnHeartbeat 2.4s ease-in-out infinite;}
+.submit-btn:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 14px 34px var(--glow),0 0 26px 5px rgba(79,179,255,0.45);animation-play-state:paused;}
+.submit-btn:disabled{opacity:.7;cursor:not-allowed;}
+.form-msg{margin-top:.8rem;font-size:.85rem;text-align:center;display:none;padding:.6rem;border-radius:8px;}
+
+/* FOOTER */
+footer{background:#06101f;border-top:1px solid rgba(79,179,255,0.15);padding:3.5rem 5% 1.8rem;}
+[data-theme="light"] footer{background:#0c1f3d;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto 2.5rem;}
+.footer-brand .logo{display:block;margin-bottom:1rem;}
+.footer-brand p{color:rgba(255,255,255,0.45);font-size:.85rem;line-height:1.75;}
+.socials{display:flex;gap:.8rem;margin-top:1.3rem;}
+.social-icon{width:38px;height:38px;background:rgba(79,179,255,0.08);border:1px solid rgba(79,179,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.88rem;text-decoration:none;transition:all .3s;animation:iconPulse 2.4s ease-out infinite;}
+.social-icon:hover{background:var(--accent);color:#0c1f3d;border-color:var(--accent);animation:none;}
+.footer-col h5{font-weight:700;margin-bottom:1.1rem;font-size:.9rem;color:rgba(255,255,255,0.8);letter-spacing:.5px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:.65rem;}
+.footer-col ul li a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:.84rem;transition:color .3s;}
+.footer-col ul li a:hover{color:var(--accent);}
+.footer-bottom{border-top:1px solid rgba(79,179,255,0.1);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;flex-wrap:wrap;gap:1rem;}
+.footer-bottom p{color:rgba(255,255,255,0.3);font-size:.78rem;}
+.footer-bottom .gold-line{color:var(--accent);}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1.5rem 5%;z-index:999;flex-direction:column;gap:1rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:1rem;padding:.5rem 0;border-bottom:1px solid var(--border);}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a:hover{color:var(--accent);}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9999;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,0.45);transition:transform .3s,box-shadow .3s;animation:wa-pulse 2.5s infinite;}
+.wa-float:hover{transform:scale(1.12);box-shadow:0 10px 32px rgba(37,211,102,0.6);}
+@keyframes wa-pulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,0.45);}50%{box-shadow:0 6px 36px rgba(37,211,102,0.75),0 0 0 8px rgba(37,211,102,0.12);}}
+
+/* CLIP TEXT REVEAL */
+.reveal-wrap{overflow:hidden;display:block;}
+.reveal-line{display:block;transform:translateY(110%);will-change:transform;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{display:none;}.hamburger{display:flex;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .form-row{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:1.8rem;}
+  .stats-grid{grid-template-columns:repeat(4,1fr);gap:.5rem;}
+  .stat-box{padding:1.2rem .3rem;border-radius:10px;}
+  .stat-box .count{font-size:1.5rem;}
+  .stat-box p{font-size:.62rem;margin-top:.35rem;}
+}
+@media(max-width:400px){
+  .stats-grid{gap:.3rem;}
+  .stat-box{padding:.8rem .15rem;border-radius:8px;}
+  .stat-box .count{font-size:1.15rem;}
+  .stat-box p{font-size:.55rem;}
+}
+
+/* PERFORMANCE: pause offscreen animations */
+.anim-paused{animation-play-state:paused !important;}
+.anim-paused::before,.anim-paused::after{animation-play-state:paused !important;}
+
+/* PERFORMANCE: reduce heavy effects on small screens */
+@media(max-width:760px){
+  .orb,.hero-beam,.hero-sweep,.hero-lines,.brand-halo,.heading-glow,.heading-glow2{display:none;}
+  .corner-anim::before{animation-duration:8s;}
+  #about::before,#services::before,#why::before,#testimonials::before,#contact::before{filter:blur(40px);}
+  nav{backdrop-filter:none;}
+}
+
+/* PERFORMANCE: respect reduced motion preference */
+@media(prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-text" id="loaderText"></div>
+  <div class="loader-bar"></div>
+  <div class="loader-sub">Loading Premium Leads</div>
+</div>
+
+<!-- SCROLL PROGRESS BAR -->
+<div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="logo">ZS EMPIRES BPO</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#why" onclick="closeMenu()">Why Us</a>
+  <a href="#testimonials" onclick="closeMenu()">Clients</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <svg class="hero-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <line x1="15" y1="22" x2="60" y2="15" />
+    <line x1="60" y1="15" x2="85" y2="38" />
+    <line x1="85" y1="38" x2="78" y2="65" />
+    <line x1="15" y1="22" x2="25" y2="78" />
+    <line x1="25" y1="78" x2="78" y2="65" />
+  </svg>
+  <div class="hero-node" style="width:8px;height:8px;top:22%;left:15%;animation-delay:0s"></div>
+  <div class="hero-node" style="width:6px;height:6px;top:65%;left:78%;animation-delay:.8s"></div>
+  <div class="hero-node" style="width:10px;height:10px;top:38%;left:85%;animation-delay:1.6s"></div>
+  <div class="hero-node" style="width:7px;height:7px;top:78%;left:25%;animation-delay:2.4s"></div>
+  <div class="hero-node" style="width:5px;height:5px;top:15%;left:60%;animation-delay:1.2s"></div>
+  <div class="hero-node" style="width:6px;height:6px;top:48%;left:6%;animation-delay:2s"></div>
+  <div class="hero-node" style="width:5px;height:5px;top:88%;left:55%;animation-delay:.4s"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+  <div class="hero-beam"></div>
+  <div class="hero-sweep"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fas fa-crown"></i> &nbsp;#1 BPO Partner for Insurance Agencies</div>
+    <div class="brand-mark">
+      <span class="brand-halo"></span>
+      <span class="brand-ring"></span>
+      <span class="brand-ring2"></span>
+      <span class="brand-ring3"></span>
+      <span class="scratch-wrap">ZS EMPIRES BPO
+        <svg viewBox="0 0 300 90" preserveAspectRatio="none"><path d="M8,45 C5,20 60,8 150,8 C250,8 295,18 292,45 C295,75 240,84 150,84 C55,84 5,72 8,45 Z"/></svg>
+      </span>
+    </div>
+    <h1 class="heading-wrap">
+      <span class="heading-glow"></span><span class="heading-glow2"></span>
+      <span class="white-text">We Deliver</span>
+      <span class="gold-text underline-anim"> Premium Leads</span><br>
+      <span class="white-text">for USA &amp; UK</span>
+      <span class="gold-text"> Insurance Agencies</span>
+    </h1>
+    <p>ZS EMPIRES BPO connects insurance agencies with high-intent, verified prospects — fuelling real revenue growth across the USA and United Kingdom.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold"><i class="fas fa-rocket" style="margin-right:.5rem"></i>Start Generating Leads</a>
+      <a href="#services" class="btn-outline"><i class="fas fa-play" style="margin-right:.5rem"></i>View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num" data-target="50000">0</span>
+        <div class="lbl">Leads Generated</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num" data-target="200">0</span>
+        <div class="lbl">Happy Clients</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num" data-target="98">0</span>
+        <div class="lbl">% Satisfaction</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num" data-target="5">0</span>
+        <div class="lbl">Years Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="section-tag">About Us</div>
+      <h2 class="section-title heading-wrap"><span class="heading-glow"></span><span class="heading-glow2"></span>Your Trusted BPO Partner in <span class="gold-text underline-anim">Lead Generation</span></h2>
+      <p class="section-sub">ZS EMPIRES BPO is a results-driven call centre specializing in insurance lead generation for agencies in the USA and UK. We combine skilled agents, smart scripting, and proven strategies to deliver qualified prospects directly to your team.</p>
+      <br><br>
+      <a href="#contact" class="btn-gold about-btn">Partner With Us</a>
+    </div>
+    <div class="about-visual about-right">
+      <div class="about-item ai-1">
+        <div class="about-icon" style="animation-delay:0s"><i class="fas fa-phone-volume"></i></div>
+        <div><h4>Expert Outbound Calling</h4><p>Trained agents who deeply understand the insurance landscape in both the USA and UK markets.</p></div>
+      </div>
+      <div class="about-item ai-2">
+        <div class="about-icon" style="animation-delay:.4s"><i class="fas fa-shield-alt"></i></div>
+        <div><h4>Verified &amp; Qualified Leads</h4><p>Every lead passes a strict qualification process before being delivered to your team.</p></div>
+      </div>
+      <div class="about-item ai-3">
+        <div class="about-icon" style="animation-delay:.8s"><i class="fas fa-chart-line"></i></div>
+        <div><h4>High Conversion Rates</h4><p>Our targeted approach ensures significantly higher close rates for your sales team.</p></div>
+      </div>
+      <div class="about-item ai-4">
+        <div class="about-icon" style="animation-delay:1.2s"><i class="fas fa-clock"></i></div>
+        <div><h4>24/7 Operations</h4><p>Round-the-clock operations across multiple time zones for maximum market reach.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="centered svc-header" style="position:relative;z-index:1">
+    <div class="section-tag">Our Services</div>
+    <h2 class="section-title heading-wrap"><span class="heading-glow"></span><span class="heading-glow2"></span>Comprehensive <span class="gold-text">Lead Generation</span> Solutions</h2>
+    <p class="section-sub">Everything your insurance agency needs to fill its pipeline with high-quality, verified prospects.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card sc"><div class="corner-anim" style="--spin-dur:4s"></div><div class="svc-icon"><i class="fas fa-users"></i></div><h3>Insurance Lead Generation</h3><p>Targeted prospecting for auto, home, life, and health insurance leads across USA and UK markets with high intent verification.</p></div>
+    <div class="service-card sc"><div class="corner-anim" style="--spin-dur:5.5s"></div><div class="svc-icon"><i class="fas fa-headset"></i></div><h3>Outbound Call Campaigns</h3><p>Professional agents running customized outbound calling campaigns tailored precisely to your ideal customer profile.</p></div>
+    <div class="service-card sc"><div class="corner-anim" style="--spin-dur:3.5s"></div><div class="svc-icon"><i class="fas fa-calendar-check"></i></div><h3>Appointment Setting</h3><p>We book qualified appointments directly into your calendar so your closers focus on selling — not prospecting.</p></div>
+    <div class="service-card sc"><div class="corner-anim" style="--spin-dur:6s"></div><div class="svc-icon"><i class="fas fa-database"></i></div><h3>Data Management</h3><p>Clean, enriched prospect data delivered in your preferred format — CRM-ready and fully organized.</p></div>
+    <div class="service-card sc"><div class="corner-anim" style="--spin-dur:4s"></div><div class="svc-icon"><i class="fas fa-globe"></i></div><h3>USA &amp; UK Market Coverage</h3><p>Deep knowledge of both American and British insurance markets with region-specific scripts and full compliance.</p></div>
+    <div class="service-card sc"><div class="corner-anim" style="--spin-dur:5.5s"></div><div class="svc-icon"><i class="fas fa-chart-bar"></i></div><h3>Performance Reporting</h3><p>Detailed weekly and monthly reports with KPIs, call analytics, and conversion tracking for full transparency.</p></div>
+    <div class="service-card sc"><div class="corner-anim" style="--spin-dur:3.5s"></div><div class="svc-icon"><i class="fas fa-phone-alt"></i></div><h3>Customer Support</h3><p>Professional inbound call handling services — our trained agents answer your business calls, resolve queries, and provide exceptional customer service on your behalf around the clock.</p></div>
+    <div class="service-card sc"><div class="corner-anim" style="--spin-dur:6s"></div><div class="svc-icon"><i class="fas fa-building"></i></div><h3>Business Call Handling</h3><p>We manage inbound calls for other businesses too — acting as your dedicated virtual call centre to handle customer enquiries, support tickets, and general business communication with professionalism.</p></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="centered why-header" style="position:relative;z-index:1">
+    <div class="section-tag">Why Choose ZS Empires</div>
+    <h2 class="section-title heading-wrap"><span class="heading-glow"></span><span class="heading-glow2"></span>Why Choose <span class="gold-text underline-anim">ZS EMPIRES BPO</span></h2>
+    <p class="section-sub">We're not just a call centre — we're a dedicated growth partner committed to your agency's long-term success.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card wc"><div class="corner-anim" style="--spin-dur:4s"></div><div class="why-num">01</div><h4>Insurance-Only Focus</h4><p>We work exclusively with insurance agencies — we speak your language and know exactly what your clients need.</p></div>
+    <div class="why-card wc"><div class="corner-anim" style="--spin-dur:5.5s"></div><div class="why-num">02</div><h4>3x Industry Conversion Rate</h4><p>Our leads convert at triple the industry average thanks to our rigorous qualification process.</p></div>
+    <div class="why-card wc"><div class="corner-anim" style="--spin-dur:3.5s"></div><div class="why-num">03</div><h4>TCPA &amp; GDPR Compliant</h4><p>Fully compliant with both US and UK regulations — protecting your agency from legal exposure.</p></div>
+    <div class="why-card wc"><div class="corner-anim" style="--spin-dur:6s"></div><div class="why-num">04</div><h4>Dedicated Account Manager</h4><p>A single point of contact who knows your business and ensures seamless, responsive communication.</p></div>
+    <div class="why-card wc"><div class="corner-anim" style="--spin-dur:4s"></div><div class="why-num">05</div><h4>Scalable On Demand</h4><p>Ramp up or scale down instantly based on your pipeline goals — we flex to your business needs.</p></div>
+    <div class="why-card wc"><div class="corner-anim" style="--spin-dur:5.5s"></div><div class="why-num">06</div><h4>Real-Time Lead Delivery</h4><p>Leads delivered instantly via CRM integration, email, or your preferred platform — zero delay.</p></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div style="position:relative;z-index:1;text-align:center;" class="stats-header">
+    <div class="section-tag">Our Numbers</div>
+    <h2 class="section-title heading-wrap" style="margin-top:.5rem"><span class="heading-glow"></span><span class="heading-glow2"></span>Results That <span class="gold-text">Speak Volumes</span></h2>
+    <p class="section-sub" style="margin:0 auto;">Five years of delivering qualified insurance leads across two of the world's most competitive markets.</p>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-box sb"><span class="count"><span id="c1">0</span>K+</span><p>Leads Delivered</p></div>
+    <div class="stat-box sb"><span class="count"><span id="c2">0</span>+</span><p>Insurance Agencies Served</p></div>
+    <div class="stat-box sb"><span class="count"><span id="c3">0</span>%</span><p>Client Retention Rate</p></div>
+    <div class="stat-box sb"><span class="count"><span id="c4">0</span>+</span><p>Trained Agents</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="centered testi-header" style="position:relative;z-index:1">
+    <div class="section-tag">Client Reviews</div>
+    <h2 class="section-title heading-wrap"><span class="heading-glow"></span><span class="heading-glow2"></span>What <span class="gold-text">Insurance Owners</span> Say</h2>
+    <p class="section-sub">Real feedback from insurance agency owners across the USA and UK who partner with ZS EMPIRES BPO.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card tc"><div class="stars">★★★★★</div><p class="review">"I own a mid-size auto insurance agency in Texas and I was struggling to keep my agents busy with quality prospects. ZS EMPIRES BPO changed everything. Within 60 days our booked appointments tripled and our closing ratio went from 18% to 31%."</p><div class="testi-author"><div class="avatar">RM</div><div><h5>Robert M. Callahan</h5><div class="role">Owner — Callahan Auto Insurance Group</div><div class="loc">📍 Houston, Texas — USA</div></div></div></div>
+    <div class="testi-card tc"><div class="stars">★★★★★</div><p class="review">"As the principal of a home and contents insurance brokerage in Manchester, I was sceptical about outsourcing lead generation overseas. ZS EMPIRES BPO proved me completely wrong. Our revenue is up 40% this year."</p><div class="testi-author"><div class="avatar">SW</div><div><h5>Sarah W. Thornton</h5><div class="role">Principal — Thornton Insurance Brokers</div><div class="loc">📍 Manchester — United Kingdom</div></div></div></div>
+    <div class="testi-card tc"><div class="stars">★★★★★</div><p class="review">"I've been running my life insurance agency in Florida for 11 years and have tried 6 different lead vendors. ZS EMPIRES BPO is in a different league. My agents close faster and with less effort."</p><div class="testi-author"><div class="avatar">DH</div><div><h5>David H. Prescott</h5><div class="role">Owner — Prescott Life Insurance Agency</div><div class="loc">📍 Orlando, Florida — USA</div></div></div></div>
+    <div class="testi-card tc"><div class="stars">★★★★★</div><p class="review">"Our commercial insurance brokerage in London needed a BPO partner who truly understood B2B insurance prospecting. ZS EMPIRES BPO delivered exactly that. Best investment we made in 2024."</p><div class="testi-author"><div class="avatar">JB</div><div><h5>James B. Hartley</h5><div class="role">Director — Hartley Commercial Insurance Ltd.</div><div class="loc">📍 London — United Kingdom</div></div></div></div>
+    <div class="testi-card tc"><div class="stars">★★★★★</div><p class="review">"ZS EMPIRES BPO helped us scale from 3 agents to 9 in under a year by keeping our pipeline constantly full. Their reporting is transparent, their team is responsive, and the leads are genuinely interested."</p><div class="testi-author"><div class="avatar">ML</div><div><h5>Maria L. Gonzalez</h5><div class="role">Owner — Golden State Health Insurance</div><div class="loc">📍 Los Angeles, California — USA</div></div></div></div>
+    <div class="testi-card tc"><div class="stars">★★★★★</div><p class="review">"ZS EMPIRES BPO's team did their homework — their scripts are spot-on and conversion from lead to policy has been exceptional. Professional, reliable, and worth every penny."</p><div class="testi-author"><div class="avatar">AK</div><div><h5>Ahmed K. Patel</h5><div class="role">Owner — Premier Motor Insurance Solutions</div><div class="loc">📍 Birmingham — United Kingdom</div></div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="centered contact-hdr" style="position:relative;z-index:1">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title heading-wrap"><span class="heading-glow"></span><span class="heading-glow2"></span>Ready to <span class="gold-text">Fill Your Pipeline?</span></h2>
+    <p class="section-sub">Get a free consultation and a custom lead generation strategy built for your agency.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info contact-left">
+      <h3>Let's Grow Together</h3>
+      <p>Our team is ready to discuss your lead generation goals and build a strategy that delivers measurable ROI for your insurance agency — in the USA or UK.</p>
+      <div class="contact-detail cd"><div class="cd-icon" style="animation-delay:0s"><i class="fas fa-envelope"></i></div><span>info@zsempires.com</span></div>
+      <div class="contact-detail cd"><div class="cd-icon" style="animation-delay:.3s"><i class="fas fa-phone"></i></div><span>+1 803 903 8277</span></div>
+      <div class="contact-detail cd"><div class="cd-icon" style="animation-delay:.6s"><i class="fab fa-whatsapp"></i></div><span>WhatsApp: +1 803 903 8277</span></div>
+      <div class="contact-detail cd"><div class="cd-icon" style="animation-delay:.9s"><i class="fab fa-instagram"></i></div><span>@zs_empires_bpo</span></div>
+      <div class="contact-detail cd"><div class="cd-icon" style="animation-delay:1.2s"><i class="fas fa-globe"></i></div><span>Serving USA &amp; UK Insurance Agencies</span></div>
+      <div class="contact-detail cd"><div class="cd-icon" style="animation-delay:1.5s"><i class="fas fa-clock"></i></div><span>Mon–Sat: 9 AM – 9 PM EST</span></div>
+    </div>
+    <div class="form-box contact-right">
+      <div class="form-row">
+        <div class="form-group"><label>First Name *</label><input type="text" id="fname" placeholder="John"></div>
+        <div class="form-group"><label>Last Name *</label><input type="text" id="lname" placeholder="Smith"></div>
+      </div>
+      <div class="form-group"><label>Email Address *</label><input type="email" id="email" placeholder="john@youragency.com"></div>
+      <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" placeholder="+1 555 000 0000"></div>
+      <div class="form-group">
+        <label>Insurance Type</label>
+        <select id="itype">
+          <option value="">Select Insurance Type</option>
+          <option>Auto Insurance</option><option>Home Insurance</option>
+          <option>Life Insurance</option><option>Health Insurance</option>
+          <option>Commercial Insurance</option><option>Motor Insurance</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Market</label>
+        <select id="market">
+          <option value="">Select Market</option>
+          <option>USA</option><option>UK</option><option>Both USA &amp; UK</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea id="msg" placeholder="Tell us about your lead generation goals and monthly volume needed..."></textarea></div>
+      <button class="submit-btn" onclick="submitForm()"><i class="fas fa-paper-plane" style="margin-right:.5rem"></i>Send Message — Get Free Quote</button>
+      <div class="form-msg" id="formMsg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">ZS EMPIRES BPO</span>
+      <p>Your premier call centre partner for insurance lead generation in the USA and UK. We fill your pipeline with qualified prospects — you close the deals.</p>
+      <div class="socials">
+        <a href="https://linkedin.com" target="_blank" class="social-icon" style="animation-delay:0s"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://instagram.com/zs_empires_bpo" target="_blank" class="social-icon" style="animation-delay:.4s"><i class="fab fa-instagram"></i></a>
+        <a href="#" onclick="openWAModal(event)" class="social-icon" style="animation-delay:.8s" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Lead Generation</a></li>
+        <li><a href="#services">Outbound Calling</a></li>
+        <li><a href="#services">Appointment Setting</a></li>
+        <li><a href="#services">Customer Support</a></li>
+        <li><a href="#services">Inbound Call Handling</a></li>
+        <li><a href="#services">Performance Reports</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Markets</h5>
+      <ul>
+        <li><a href="#contact">USA Insurance</a></li>
+        <li><a href="#contact">UK Insurance</a></li>
+        <li><a href="#contact">Auto Insurance</a></li>
+        <li><a href="#contact">Life Insurance</a></li>
+        <li><a href="#contact">Home Insurance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#testimonials">Clients</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Free Quote</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ZS EMPIRES BPO. All rights reserved.</p>
+    <p class="gold-line">✦ Trusted by Insurance Agencies in USA &amp; UK</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="#" onclick="openWAModal(event)" class="wa-float" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- WHATSAPP MODAL -->
+<div id="waModal" class="wa-modal-backdrop">
+  <div id="waBox" class="wa-modal-box">
+
+    <!-- Header -->
+    <div class="wa-modal-header">
+      <div class="wa-avatar"><i class="fab fa-whatsapp"></i></div>
+      <div>
+        <div class="wa-brand-title">ZS EMPIRES BPO</div>
+        <div class="wa-brand-sub">Answer a few quick questions to get started</div>
+      </div>
+      <button class="wa-close-btn" onclick="closeWAModal()" aria-label="Close">&times;</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="wa-prog-track"><div id="waProgress" class="wa-prog-bar"></div></div>
+    <div id="waStepLabel" class="wa-step-label">Step 1 of 6</div>
+
+    <!-- Questions wrapper (clips the slide animation) -->
+    <div class="wa-q-viewport">
+      <div id="waSlider" class="wa-slider">
+
+        <!-- Q0 -->
+        <div class="wa-slide">
+          <div class="wa-q-label"><span class="wa-q-accent">Full Name</span></div>
+          <p class="wa-q-text">What is your full name?</p>
+          <input class="wa-input" id="waQ0" type="text" placeholder="e.g. John Smith"
+            onkeydown="if(event.key==='Enter')waNext(0)" />
+          <button class="wa-next-btn" onclick="waNext(0)">Next &nbsp;<i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <!-- Q1 -->
+        <div class="wa-slide">
+          <div class="wa-q-label"><span class="wa-q-accent">Insurance Type</span></div>
+          <p class="wa-q-text">Which insurance leads do you need?</p>
+          <div class="wa-options">
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ1')">Auto Insurance</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ1')">Home Insurance</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ1')">Life Insurance</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ1')">Health Insurance</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ1')">Commercial Insurance</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ1')">Motor Insurance</button>
+          </div>
+          <input id="waQ1" type="hidden" />
+          <button class="wa-next-btn" onclick="waNext(1)">Next &nbsp;<i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <!-- Q2 -->
+        <div class="wa-slide">
+          <div class="wa-q-label"><span class="wa-q-accent">Licensed States</span></div>
+          <p class="wa-q-text">How many states are you licensed in?</p>
+          <div class="wa-options">
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ2')">1 State</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ2')">2–5 States</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ2')">6–10 States</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ2')">10+ States</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ2')">UK Only</button>
+          </div>
+          <input id="waQ2" type="hidden" />
+          <button class="wa-next-btn" onclick="waNext(2)">Next &nbsp;<i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <!-- Q3 -->
+        <div class="wa-slide">
+          <div class="wa-q-label"><span class="wa-q-accent">Agent Type</span></div>
+          <p class="wa-q-text">Are you a captive carrier or an independent agent?</p>
+          <div class="wa-options">
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ3')">Captive Carrier</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ3')">Independent Agent</button>
+          </div>
+          <input id="waQ3" type="hidden" />
+          <button class="wa-next-btn" onclick="waNext(3)">Next &nbsp;<i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <!-- Q4 -->
+        <div class="wa-slide">
+          <div class="wa-q-label"><span class="wa-q-accent">Daily Lead Volume</span></div>
+          <p class="wa-q-text">How many leads do you need daily?</p>
+          <div class="wa-options">
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ4')">1–10 Leads/Day</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ4')">11–30 Leads/Day</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ4')">31–60 Leads/Day</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ4')">60+ Leads/Day</button>
+          </div>
+          <input id="waQ4" type="hidden" />
+          <button class="wa-next-btn" onclick="waNext(4)">Next &nbsp;<i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <!-- Q5 -->
+        <div class="wa-slide">
+          <div class="wa-q-label"><span class="wa-q-accent">Team Size</span></div>
+          <p class="wa-q-text">How many licensed agents will be picking up the calls?</p>
+          <div class="wa-options">
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ5')">Just Me</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ5')">2–5 Agents</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ5')">6–15 Agents</button>
+            <button class="wa-opt" onclick="waSelectOpt(this,'waQ5')">15+ Agents</button>
+          </div>
+          <input id="waQ5" type="hidden" />
+          <button class="wa-next-btn wa-send-btn" onclick="waNext(5)">
+            <i class="fab fa-whatsapp"></i>&nbsp; Send on WhatsApp
+          </button>
+        </div>
+
+      </div><!-- /wa-slider -->
+    </div><!-- /wa-q-viewport -->
+
+    <!-- Error -->
+    <div id="waError" class="wa-error">⚠️ Please answer this question before continuing.</div>
+
+    <!-- Back button -->
+    <button id="waBackBtn" class="wa-back-btn" onclick="waBack()" style="display:none;">
+      <i class="fas fa-arrow-left"></i> &nbsp;Back
+    </button>
+
+  </div>
+</div>
+
+<style>
+/* ── Modal backdrop ── */
+.wa-modal-backdrop{
+  display:none;position:fixed;inset:0;z-index:9998;
+  background:rgba(0,0,0,0);backdrop-filter:blur(0px);
+  align-items:center;justify-content:center;
+  transition:background .35s ease, backdrop-filter .35s ease;
+}
+.wa-modal-backdrop.wa-open{
+  display:flex;
+  background:rgba(0,0,0,0.72);backdrop-filter:blur(8px);
+}
+
+/* ── Modal box ── */
+.wa-modal-box{
+  background:var(--card);border:1px solid var(--border);border-radius:22px;
+  padding:2rem 1.9rem 1.7rem;max-width:460px;width:92%;position:relative;
+  box-shadow:0 0 70px rgba(79,179,255,0.18);max-height:90vh;overflow:hidden;
+  opacity:0;transform:translateY(36px) scale(.96);
+  transition:opacity .38s cubic-bezier(.4,0,.2,1), transform .38s cubic-bezier(.4,0,.2,1);
+}
+.wa-modal-backdrop.wa-open .wa-modal-box{opacity:1;transform:translateY(0) scale(1);}
+
+/* ── Header ── */
+.wa-modal-header{display:flex;align-items:center;gap:.85rem;margin-bottom:1.4rem;}
+.wa-avatar{width:44px;height:44px;border-radius:50%;background:#25D366;display:flex;align-items:center;
+  justify-content:center;font-size:1.35rem;color:#fff;flex-shrink:0;
+  box-shadow:0 0 18px rgba(37,211,102,.45);}
+.wa-brand-title{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;
+  background:var(--gold-grad);background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:shineText 4s linear infinite;}
+.wa-brand-sub{font-size:.73rem;color:var(--text2);margin-top:.1rem;}
+.wa-close-btn{
+  position:absolute;top:.9rem;right:.9rem;
+  background:rgba(79,179,255,0.08);border:1px solid var(--border);
+  color:var(--text2);width:30px;height:30px;border-radius:50%;
+  cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s;line-height:1;
+}
+.wa-close-btn:hover{background:rgba(239,68,68,0.15);color:#ef4444;}
+
+/* ── Progress ── */
+.wa-prog-track{height:3px;border-radius:3px;background:rgba(79,179,255,0.1);margin-bottom:.5rem;overflow:hidden;}
+.wa-prog-bar{height:100%;width:0%;background:var(--gold-grad);border-radius:3px;transition:width .45s cubic-bezier(.4,0,.2,1);}
+.wa-step-label{font-size:.7rem;color:var(--text3);letter-spacing:1.2px;text-transform:uppercase;
+  font-family:'Space Grotesk',sans-serif;margin-bottom:1.3rem;}
+
+/* ── Slide viewport ── */
+.wa-q-viewport{overflow:hidden;position:relative;}
+.wa-slider{display:flex;transition:transform .42s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.wa-slide{min-width:100%;padding:0 2px 4px;}
+
+/* ── Question text ── */
+.wa-q-label{font-size:.7rem;color:var(--text3);letter-spacing:1.2px;text-transform:uppercase;
+  font-family:'Space Grotesk',sans-serif;margin-bottom:.45rem;}
+.wa-q-accent{color:var(--accent);}
+.wa-q-text{font-family:'Syne',sans-serif;font-size:1.02rem;font-weight:700;
+  color:var(--text);margin-bottom:.9rem;line-height:1.45;}
+
+/* ── Input ── */
+.wa-input{width:100%;padding:.72rem 1rem;border-radius:10px;
+  border:1.5px solid var(--border);background:var(--bg2);color:var(--text);
+  font-size:.93rem;font-family:'Inter',sans-serif;outline:none;
+  transition:border-color .22s,box-shadow .22s;}
+.wa-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,179,255,.12);}
+
+/* ── Options ── */
+.wa-options{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.85rem;}
+.wa-opt{
+  padding:.5rem 1rem;border-radius:8px;
+  border:1.5px solid var(--border);background:var(--bg2);
+  color:var(--text2);font-size:.83rem;font-family:'Space Grotesk',sans-serif;
+  cursor:pointer;transition:all .2s;
+}
+.wa-opt:hover{border-color:var(--accent);color:var(--accent);background:rgba(79,179,255,.06);}
+.wa-opt.selected{
+  border-color:var(--accent);background:rgba(79,179,255,.14);
+  color:var(--accent);font-weight:600;
+  box-shadow:0 0 0 3px rgba(79,179,255,.1);
+}
+
+/* ── Buttons ── */
+.wa-next-btn{
+  margin-top:.85rem;width:100%;padding:.78rem 1.4rem;border-radius:10px;
+  border:none;background:var(--gold-grad);color:#0c1f3d;
+  font-weight:700;font-size:.93rem;cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;
+  transition:transform .22s,box-shadow .22s;
+  box-shadow:0 4px 18px var(--glow);
+}
+.wa-next-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--glow);}
+.wa-send-btn{background:linear-gradient(135deg,#1fbb52,#25D366,#3ddc7a);color:#fff;
+  box-shadow:0 4px 18px rgba(37,211,102,.35);}
+.wa-send-btn:hover{box-shadow:0 8px 28px rgba(37,211,102,.5);}
+
+.wa-back-btn{
+  margin-top:.7rem;background:none;border:none;
+  color:var(--text3);font-size:.82rem;cursor:pointer;
+  display:flex;align-items:center;gap:.3rem;padding:.3rem 0;
+  font-family:'Space Grotesk',sans-serif;transition:color .2s;
+}
+.wa-back-btn:hover{color:var(--accent);}
+
+/* ── Error ── */
+.wa-error{
+  display:none;color:#ef4444;font-size:.8rem;
+  margin-top:.65rem;padding:.45rem .8rem;
+  background:rgba(239,68,68,0.07);border-radius:8px;
+  border:1px solid rgba(239,68,68,0.18);
+  animation:waErrShake .3s ease;
+}
+@keyframes waErrShake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-5px);}
+  75%{transform:translateX(5px);}
+}
+</style>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ── LOADER: build dancing letters ──
+(function(){
+  const text='ZS EMPIRES';
+  const container=document.getElementById('loaderText');
+  text.split('').forEach((ch,i)=>{
+    const span=document.createElement('span');
+    span.textContent=ch===' '?'\u00A0\u00A0':ch;
+    span.style.setProperty('--d',(i*0.07)+'s');
+    container.appendChild(span);
+  });
+})();
+
+// ── LOADER: hide once page is ready ──
+function hideLoader(){
+  const loader=document.getElementById('loader');
+  if(!loader) return;
+  loader.classList.add('hidden');
+  document.body.style.overflow='';
+  setTimeout(()=>{ if(loader.parentNode) loader.parentNode.removeChild(loader); },700);
+}
+document.body.style.overflow='hidden';
+window.addEventListener('load',()=>{
+  setTimeout(hideLoader, 900);
+});
+// Fallback in case load event is delayed
+setTimeout(hideLoader, 3500);
+
+// ── SCROLL PROGRESS BAR ──
+(function(){
+  const bar=document.getElementById('scrollProgressBar');
+  if(!bar) return;
+  let ticking=false;
+  function update(){
+    const scrollTop=window.scrollY || document.documentElement.scrollTop;
+    const docHeight=document.documentElement.scrollHeight - window.innerHeight;
+    const pct=docHeight>0 ? (scrollTop/docHeight)*100 : 0;
+    bar.style.width=pct+'%';
+    ticking=false;
+  }
+  window.addEventListener('scroll',()=>{
+    if(!ticking){ requestAnimationFrame(update); ticking=true; }
+  },{passive:true});
+  update();
+})();
+
+// ── THEME: FOLLOW SYSTEM/DEVICE PREFERENCE ──
+function applySystemTheme(){
+  const isLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+}
+applySystemTheme();
+if(window.matchMedia){
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', applySystemTheme);
+}
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+
+// ── HERO ENTRANCE (sequence) ──
+const heroTL = gsap.timeline({defaults:{ease:'power3.out'}});
+heroTL
+  .from('.hero-badge',{y:30,opacity:0,duration:.7,delay:.3})
+  .from('.brand-mark',{y:25,scale:.85,opacity:0,duration:.7,ease:'back.out(1.7)'},'-=.35')
+  .to('.brand-mark',{opacity:1,scale:1,duration:.5},'-=.3')
+  .from('.hero h1 .white-text',{y:60,opacity:0,duration:.8,stagger:.15},'-=.2')
+  .from('.hero h1 .gold-text',{y:60,opacity:0,duration:.8,stagger:.15},'-=.5')
+  .to('.hero p',{y:0,opacity:1,duration:.7},'-=.3')
+  .to('.hero-btns',{y:0,opacity:1,duration:.7},'-=.4')
+  .to('.hero-stats',{y:0,opacity:1,duration:.7},'-=.3');
+
+// Hero counter
+function animateCounter(el,target){
+  let c=0;const step=Math.max(1,Math.ceil(target/80));
+  const t=setInterval(()=>{c=Math.min(c+step,target);el.textContent=c.toLocaleString();if(c>=target)clearInterval(t);},18);
+}
+document.querySelectorAll('.hero-stat .num').forEach(el=>animateCounter(el,parseInt(el.dataset.target)));
+
+// ── ABOUT ──
+gsap.from('.about-left .section-tag',{scrollTrigger:{trigger:'#about',start:'top 80%'},x:-50,opacity:0,duration:.7,ease:'power3.out'});
+gsap.from('.about-left .section-title',{scrollTrigger:{trigger:'#about',start:'top 75%'},x:-50,opacity:0,duration:.8,ease:'power3.out',delay:.1});
+gsap.from('.about-left .section-sub',{scrollTrigger:{trigger:'#about',start:'top 75%'},x:-50,opacity:0,duration:.8,ease:'power3.out',delay:.2});
+gsap.from('.about-btn',{scrollTrigger:{trigger:'#about',start:'top 70%'},x:-40,opacity:0,duration:.7,ease:'power3.out',delay:.35});
+gsap.from('.about-right',{scrollTrigger:{trigger:'#about',start:'top 75%'},x:-60,opacity:0,duration:.9,ease:'power3.out',delay:.1});
+['.ai-1','.ai-2','.ai-3','.ai-4'].forEach((cls,i)=>{
+  gsap.from(cls,{scrollTrigger:{trigger:'#about',start:'top 70%'},x:-40,opacity:0,duration:.65,ease:'power3.out',delay:.2+i*.12});
+  gsap.from(cls+' .about-icon',{scrollTrigger:{trigger:'#about',start:'top 70%'},scale:0,rotation:20,opacity:0,duration:.5,ease:'back.out(1.7)',delay:.3+i*.12});
+});
+
+// ── SERVICES ──
+gsap.from('.svc-header .section-tag',{scrollTrigger:{trigger:'#services',start:'top 80%'},y:30,opacity:0,duration:.6,ease:'power3.out'});
+gsap.from('.svc-header .section-title',{scrollTrigger:{trigger:'#services',start:'top 78%'},y:35,opacity:0,duration:.7,ease:'power3.out',delay:.1});
+gsap.from('.svc-header .section-sub',{scrollTrigger:{trigger:'#services',start:'top 76%'},y:30,opacity:0,duration:.6,ease:'power3.out',delay:.2});
+gsap.utils.toArray('.sc').forEach((el,i)=>{
+  gsap.from(el,{
+    scrollTrigger:{trigger:el,start:'top 88%'},
+    y:50,opacity:0,scale:.95,
+    duration:.65,ease:'power3.out',
+    delay:(i%3)*0.1
+  });
+  gsap.from(el.querySelector('.svc-icon'),{
+    scrollTrigger:{trigger:el,start:'top 88%'},
+    scale:0,rotation:-15,
+    duration:.5,ease:'back.out(2)',
+    delay:(i%3)*0.1+.1
+  });
+});
+
+// ── WHY US ──
+gsap.from('.why-header .section-tag',{scrollTrigger:{trigger:'#why',start:'top 80%'},y:30,opacity:0,duration:.6,ease:'power3.out'});
+gsap.from('.why-header .section-title',{scrollTrigger:{trigger:'#why',start:'top 78%'},y:35,opacity:0,duration:.7,ease:'power3.out',delay:.1});
+gsap.from('.why-header .section-sub',{scrollTrigger:{trigger:'#why',start:'top 76%'},y:30,opacity:0,duration:.6,ease:'power3.out',delay:.2});
+gsap.utils.toArray('.wc').forEach((el,i)=>{
+  gsap.from(el,{scrollTrigger:{trigger:el,start:'top 88%'},y:45,opacity:0,duration:.6,ease:'power3.out',delay:(i%3)*0.12});
+  gsap.from(el.querySelector('.why-num'),{scrollTrigger:{trigger:el,start:'top 88%'},x:-20,opacity:0,duration:.5,ease:'power3.out',delay:(i%3)*0.12+.15});
+  gsap.from(el.querySelector('h4'),{scrollTrigger:{trigger:el,start:'top 88%'},y:15,opacity:0,duration:.5,ease:'power3.out',delay:(i%3)*0.12+.2});
+  gsap.from(el.querySelector('p'),{scrollTrigger:{trigger:el,start:'top 88%'},y:10,opacity:0,duration:.5,ease:'power3.out',delay:(i%3)*0.12+.28});
+});
+
+// ── STATS ──
+gsap.from('.stats-header .section-tag',{scrollTrigger:{trigger:'#stats',start:'top 80%'},y:30,opacity:0,duration:.6,ease:'power3.out'});
+gsap.from('.stats-header .section-title',{scrollTrigger:{trigger:'#stats',start:'top 78%'},y:35,opacity:0,duration:.7,ease:'power3.out',delay:.1});
+gsap.from('.stats-header .section-sub',{scrollTrigger:{trigger:'#stats',start:'top 76%'},y:30,opacity:0,duration:.6,ease:'power3.out',delay:.2});
+gsap.utils.toArray('.sb').forEach((el,i)=>{
+  gsap.from(el,{scrollTrigger:{trigger:'#stats',start:'top 70%'},y:50,opacity:0,scale:.9,duration:.7,ease:'back.out(1.4)',delay:i*.15});
+});
+let statsAnimated=false;
+ScrollTrigger.create({
+  trigger:'#stats',start:'top 65%',
+  onEnter:()=>{
+    if(statsAnimated)return;statsAnimated=true;
+    function animNum(id,t){let c=0,el=document.getElementById(id),s=Math.max(1,Math.ceil(t/60)),ti=setInterval(()=>{c=Math.min(c+s,t);el.textContent=c;if(c>=t)clearInterval(ti);},22);}
+    setTimeout(()=>animNum('c1',50),300);
+    setTimeout(()=>animNum('c2',200),450);
+    setTimeout(()=>animNum('c3',96),600);
+    setTimeout(()=>animNum('c4',120),750);
+  }
+});
+
+// ── TESTIMONIALS ──
+gsap.from('.testi-header .section-tag',{scrollTrigger:{trigger:'#testimonials',start:'top 80%'},y:30,opacity:0,duration:.6,ease:'power3.out'});
+gsap.from('.testi-header .section-title',{scrollTrigger:{trigger:'#testimonials',start:'top 78%'},y:35,opacity:0,duration:.7,ease:'power3.out',delay:.1});
+gsap.from('.testi-header .section-sub',{scrollTrigger:{trigger:'#testimonials',start:'top 76%'},y:30,opacity:0,duration:.6,ease:'power3.out',delay:.2});
+gsap.utils.toArray('.tc').forEach((el,i)=>{
+  gsap.from(el,{scrollTrigger:{trigger:el,start:'top 90%'},y:55,opacity:0,duration:.7,ease:'power3.out',delay:(i%3)*0.12});
+  gsap.from(el.querySelector('.stars'),{scrollTrigger:{trigger:el,start:'top 90%'},scale:0,opacity:0,duration:.4,ease:'back.out(2)',delay:(i%3)*0.12+.2});
+  gsap.from(el.querySelector('.avatar'),{scrollTrigger:{trigger:el,start:'top 90%'},scale:0,rotation:10,opacity:0,duration:.45,ease:'back.out(2)',delay:(i%3)*0.12+.3});
+});
+
+// ── CONTACT ──
+gsap.from('.contact-hdr .section-tag',{scrollTrigger:{trigger:'#contact',start:'top 80%'},y:30,opacity:0,duration:.6,ease:'power3.out'});
+gsap.from('.contact-hdr .section-title',{scrollTrigger:{trigger:'#contact',start:'top 78%'},y:35,opacity:0,duration:.7,ease:'power3.out',delay:.1});
+gsap.from('.contact-hdr .section-sub',{scrollTrigger:{trigger:'#contact',start:'top 76%'},y:30,opacity:0,duration:.6,ease:'power3.out',delay:.2});
+gsap.from('.contact-left h3',{scrollTrigger:{trigger:'#contact',start:'top 72%'},x:-40,opacity:0,duration:.7,ease:'power3.out',delay:.1});
+gsap.from('.contact-left p',{scrollTrigger:{trigger:'#contact',start:'top 72%'},x:-40,opacity:0,duration:.7,ease:'power3.out',delay:.2});
+gsap.utils.toArray('.cd').forEach((el,i)=>{
+  gsap.from(el,{scrollTrigger:{trigger:'#contact',start:'top 68%'},x:-35,opacity:0,duration:.6,ease:'power3.out',delay:.25+i*.1});
+});
+gsap.from('.contact-right',{scrollTrigger:{trigger:'#contact',start:'top 72%'},x:-55,opacity:0,duration:.9,ease:'power3.out',delay:.2});
+
+// ── FORM SUBMIT → Google Sheets ──
+const SHEET_URL='https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec';
+async function submitForm(){
+  const fname=document.getElementById('fname').value.trim();
+  const lname=document.getElementById('lname').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const itype=document.getElementById('itype').value;
+  const market=document.getElementById('market').value;
+  const msgVal=document.getElementById('msg').value.trim();
+  const msgEl=document.getElementById('formMsg');
+  const btn=document.querySelector('.submit-btn');
+  if(!fname||!email){
+    msgEl.style.display='block';msgEl.style.color='#ef4444';
+    msgEl.style.background='rgba(239,68,68,0.08)';
+    msgEl.textContent='⚠️ Please fill in your name and email address.';return;
+  }
+  btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin" style="margin-right:.5rem"></i>Sending...';
+  const data={fname,lname,email,phone,itype,market,message:msgVal,timestamp:new Date().toLocaleString()};
+  try{
+    await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    msgEl.style.display='block';msgEl.style.color='#4FB3FF';
+    msgEl.style.background='rgba(79,179,255,0.08)';
+    msgEl.textContent='✅ Message sent! Our team will contact you within 24 hours.';
+    ['fname','lname','email','phone','msg'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('itype').value='';document.getElementById('market').value='';
+  }catch(err){
+    msgEl.style.display='block';msgEl.style.color='#ef4444';
+    msgEl.style.background='rgba(239,68,68,0.08)';
+    msgEl.textContent='⚠️ Something went wrong. Please try again or contact us directly.';
+  }
+  btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane" style="margin-right:.5rem"></i>Send Message — Get Free Quote';
+  setTimeout(()=>{msgEl.style.display='none';},6000);
+}
+
+
+// ── WHATSAPP MODAL (smooth slider) ──
+let waCurrentQ = 0;
+const waTotalQ = 6;
+
+function openWAModal(e){
+  if(e) e.preventDefault();
+  waCurrentQ = 0;
+  document.getElementById('waSlider').style.transform='translateX(0%)';
+  for(let i=0;i<waTotalQ;i++){
+    const inp=document.getElementById('waQ'+i);
+    if(inp) inp.value='';
+    const slides=document.querySelectorAll('.wa-slide');
+    if(slides[i]) slides[i].querySelectorAll('.wa-opt').forEach(b=>b.classList.remove('selected'));
+  }
+  document.getElementById('waProgress').style.width='0%';
+  document.getElementById('waStepLabel').textContent='Step 1 of '+waTotalQ;
+  document.getElementById('waError').style.display='none';
+  document.getElementById('waBackBtn').style.display='none';
+  const modal=document.getElementById('waModal');
+  modal.style.display='flex';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>modal.classList.add('wa-open')));
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{ const el=document.getElementById('waQ0'); if(el) el.focus(); },400);
+}
+
+function closeWAModal(){
+  const modal=document.getElementById('waModal');
+  modal.classList.remove('wa-open');
+  setTimeout(()=>{ modal.style.display='none'; },380);
+  document.body.style.overflow='';
+}
+
+function waSelectOpt(btn, inputId){
+  btn.closest('.wa-options').querySelectorAll('.wa-opt').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById(inputId).value=btn.textContent.trim();
+  document.getElementById('waError').style.display='none';
+}
+
+function waNext(qIndex){
+  const inp=document.getElementById('waQ'+qIndex);
+  const val=inp ? inp.value.trim() : '';
+  if(!val){
+    const err=document.getElementById('waError');
+    err.style.display='block';
+    err.style.animation='none';
+    void err.offsetWidth;
+    err.style.animation='waErrShake .3s ease';
+    return;
+  }
+  document.getElementById('waError').style.display='none';
+  if(qIndex < waTotalQ - 1){
+    waCurrentQ=qIndex+1;
+    document.getElementById('waSlider').style.transform='translateX(-'+(waCurrentQ*100)+'%)';
+    document.getElementById('waProgress').style.width=((waCurrentQ/waTotalQ)*100)+'%';
+    document.getElementById('waStepLabel').textContent='Step '+(waCurrentQ+1)+' of '+waTotalQ;
+    document.getElementById('waBackBtn').style.display='flex';
+    setTimeout(()=>{
+      const slide=document.querySelectorAll('.wa-slide')[waCurrentQ];
+      const txt=slide&&slide.querySelector('input[type="text"]');
+      if(txt) txt.focus();
+    },450);
+  } else {
+    const name  =document.getElementById('waQ0').value.trim();
+    const itype =document.getElementById('waQ1').value.trim();
+    const states=document.getElementById('waQ2').value.trim();
+    const atype =document.getElementById('waQ3').value.trim();
+    const leads =document.getElementById('waQ4').value.trim();
+    const agents=document.getElementById('waQ5').value.trim();
+    document.getElementById('waProgress').style.width='100%';
+    const msg=
+      'Hi ZS Empires BPO! I\'m interested in your lead generation services. Here are my details:\n\n'+
+      '1. Full Name: '+name+'\n'+
+      '2. Insurance Type Needed: '+itype+'\n'+
+      '3. Licensed States: '+states+'\n'+
+      '4. Agent Type: '+atype+'\n'+
+      '5. Leads Needed Daily: '+leads+'\n'+
+      '6. Licensed Agents on Team: '+agents;
+    closeWAModal();
+    setTimeout(()=>window.open('https://wa.me/18039038277?text='+encodeURIComponent(msg),'_blank'),400);
+  }
+}
+
+function waBack(){
+  if(waCurrentQ<=0) return;
+  document.getElementById('waError').style.display='none';
+  waCurrentQ--;
+  document.getElementById('waSlider').style.transform='translateX(-'+(waCurrentQ*100)+'%)';
+  document.getElementById('waProgress').style.width=((waCurrentQ/waTotalQ)*100)+'%';
+  document.getElementById('waStepLabel').textContent='Step '+(waCurrentQ+1)+' of '+waTotalQ;
+  if(waCurrentQ===0) document.getElementById('waBackBtn').style.display='none';
+}
+
+document.getElementById('waModal').addEventListener('click',function(e){
+  if(e.target===this) closeWAModal();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&document.getElementById('waModal').classList.contains('wa-open')) closeWAModal();
+});
+
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  const selectors='.corner-anim, .icon-pulse, .svc-icon, .about-icon, .cd-icon, .social-icon, .why-num, .section-tag, .hero-badge, .scratch-wrap, .brand-ring, .brand-ring2, .brand-ring3, .brand-halo, .orb, .hero-node, .heading-glow, .heading-glow2';
+  const els=document.querySelectorAll(selectors);
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.remove('anim-paused');}
+      else{entry.target.classList.add('anim-paused');}
+    });
+  },{rootMargin:'150px 0px'});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
